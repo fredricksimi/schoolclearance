@@ -1,11 +1,12 @@
 <template>
-  <div class="container">
-    <p class="text-muted">Dean of Students</p>
+  <div class="container" style="background-color: #d7eed7">
+    <br><br>
+    <p class="text-muted">Hostels</p>
     <p>I certify that my records for the Catering Department are clear</p>
     
     <button @click="checkDatabase" class="btn btn-primary btn-sm">Clear this department</button>
     <br><br>
-    <p style="color:red;">{{message}}</p>
+    <div :class="alert">{{message}}</div>
     <br>
     <table v-if="showTable" class="table table-bordered">
       
@@ -36,7 +37,8 @@ export default {
       item_name: '',
       cash_value: '',
       showTable:false,
-      message: ''
+      message: '',
+      alert:''
     }
   },
   mounted () {
@@ -54,12 +56,14 @@ export default {
       }).then(response => this.hostelsitems = response.data)
     },
     checkDatabase() {
-      if (this.hostelsitems == '' ) {
+      if (this.libraryitems == '' ) {
         this.message = 'You have been successfully cleared from this department';
+        this.alert = 'alert alert-success'
       }
       else {
         this.message = 'Please check with the department and clear your record before proceeding.'
         this.showTable =  true;
+        this.alert = 'alert alert-danger'
       }
     }
   }
