@@ -56,7 +56,7 @@ export default {
       }).then(response => this.hostelsitems = response.data)
     },
     checkDatabase() {
-      if (this.libraryitems == '' ) {
+      if (this.hostelsitems == '' ) {
         this.message = 'You have been successfully cleared from this department';
         this.alert = 'alert alert-success'
       }
