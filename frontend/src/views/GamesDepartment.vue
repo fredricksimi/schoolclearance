@@ -40,18 +40,11 @@ export default {
       alert:''
     }
   },
-  mounted () {
-    this.getGamesItems()
-  },
   methods: {
     getGamesItems() {
       axios({
         method: 'get',
-        url: API_URL + 'gamesdepartment/',
-        auth: {
-          username: 'freddy',
-          password: 'voldermort'
-        }
+        url: API_URL + 'gamesdepartment/'
       }).then(response => this.Gamesitems = response.data)
     },
     checkDatabase() {

@@ -41,18 +41,11 @@ export default {
       alert:''
     }
   },
-  mounted () {
-    this.getHoDItems()
-  },
   methods: {
     getHoDItems() {
       axios({
         method: 'get',
-        url: API_URL + 'hod/',
-        auth: {
-          username: 'freddy',
-          password: 'voldermort'
-        }
+        url: API_URL + 'hod/'
       }).then(response => this.hoditems = response.data)
     },
     checkDatabase() {

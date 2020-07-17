@@ -27,7 +27,7 @@
 </template>
 
 <script>
-const API_URL = 'http://127.0.0.1:8000/'
+import TokenService from '../storage/service'
 import axios from 'axios'
 export default {
   name: 'RegistrarofAcademics',
@@ -41,18 +41,12 @@ export default {
       alert:''
     }
   },
-  mounted () {
-    this.getRegistrarofAcademicsItems()
-  },
   methods: {
     getRegistrarofAcademicsItems() {
-      axios({
-        method: 'get',
-        url: API_URL + 'registrar/',
-        auth: {
-          username: 'freddy',
-          password: 'voldermort'
-        }
+      axios.get('http://127.0.0.1:8000/registrar/', {
+      headers: {
+        'Authorization': `token ${TokenService}`
+      }
       }).then(response => this.RegistrarofAcademicsitems = response.data)
     },
     checkDatabase() {

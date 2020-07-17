@@ -41,18 +41,11 @@ export default {
       alert:''
     }
   },
-  mounted () {
-    this.getDeanStudentsItems()
-  },
   methods: {
     getDeanStudentsItems() {
       axios({
         method: 'get',
-        url: API_URL + 'dean-of-students/',
-        auth: {
-          username: 'freddy',
-          password: 'voldermort'
-        }
+        url: API_URL + 'dean-of-students/'
       }).then(response => this.deanstudentsitems = response.data)
     },
     checkDatabase() {

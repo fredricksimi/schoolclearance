@@ -1,14 +1,14 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 // import DeanSchool from '../views/DeanSchool.vue'
-// import Finance from '../views/Finance.vue'
+import Register from '../components/Register.vue'
 
 
 Vue.use(VueRouter)
 
 const routes = [
   // { path: '/', name: 'deanschool', component: DeanSchool, mode: history },
-  // { path: '/hod', name: 'hod', component: () => import( '../views/HoD.vue')},
+  // { path: '/register', name: 'register', component:Register )},
   // { path: '/finance', name: 'finance', component: Finance },
   // { path: '/labs', name: 'labs', component: () => import( '../views/LabsandWorkshops.vue')},
   // { path: '/catering', name: 'catering', component: () => import( '../views/Catering.vue')},

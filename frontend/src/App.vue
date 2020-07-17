@@ -1,36 +1,8 @@
 <template>
   <div>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" >Clearance Form</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
-
-      <!-- <li class="nav-item active"><a class="nav-link"><router-link to="/">Dean of School</router-link></a></li> -->
-
-      <!-- <li class="nav-item"><a class="nav-link"><router-link to="/hod">Head of Dept</router-link></a></li>
-
-      <li class="nav-item"><a class="nav-link"><router-link to="/dean-of-students">Dean of Students</router-link></a></li>
-
-      <li class="nav-item"><a class="nav-link"><router-link to="/library">Library</router-link></a></li>
-
-      <li class="nav-item"><a class="nav-link"><router-link to="/games">Games</router-link></a></li>
-
-      <li class="nav-item"><a class="nav-link"><router-link to="/labs">Labs and Workshops</router-link></a></li>
-
-      <li class="nav-item"><a class="nav-link"><router-link to="/registrar-of-academics">Registrar of Academics</router-link></a></li>
-
-      <li class="nav-item"><a class="nav-link"><router-link to="/finance-officer">Finance Officer</router-link></a></li>
-
-      <li class="nav-item"><a class="nav-link"><router-link to="/finance">Finance</router-link></a></li>
-
-      <li class="nav-item"><a class="nav-link"><router-link to="/catering">Catering</router-link></a></li> -->
-    </ul>
-  </div>
-</nav>
-    
+   <div id="nav">
+     <Header/>
+   </div>
     <router-view />
     <br>
     <div class="container">
@@ -65,6 +37,8 @@
 </template>
 
 <script>
+import axios from 'axios'
+import TokenService from './storage/service'
 import DeanSchool from './views/DeanSchool'
 import HoD from './views/HoD'
 import DeanStudents from './views/DeanStudents'
@@ -76,6 +50,7 @@ import Registrar from './views/RegistrarofAcademics'
 import FinanceOfficer from './views/FinanceOfficer'
 import Finance from './views/Finance'
 import Library from './views/Library'
+import Header from './components/Header'
 
 export default {
   name: 'App',
@@ -90,7 +65,43 @@ export default {
     Registrar,
     FinanceOfficer,
     Finance,
-    Library
+    Library,
+    Header
+  },
+  data(){
+    return {
+      username: '',
+      password: '',
+      token: localStorage.getItem('user-token') || null,
+    }
+  },
+  methods: {
+    login() {
+      axios.post('http://127.0.0.1:8000/auth/', {
+        username: this.username,
+        password: this.password,
+      })
+      .then(resp => {
+        
+      this.token = resp.data.token;
+      console.log(this.token)
+      localStorage.setItem('user-token', resp.data.token)
+      })
+      .catch(error => {
+        localStorage.removeItem('user-token')
+      })
+    },
+    logout() {
+      localStorage.removeItem('user-token');
+      this.token = null;
+    },
+    register() {
+      console.log('Router')
+    },
+
+  },
+  created() {
+    this.token = TokenService.getToken() || null;
   }
 }
 </script>
@@ -103,5 +114,18 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+#nav {
+  padding: 30px;
+}
+
+#nav a {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+#nav a.router-link-exact-active {
+  color: #42b983;
 }
 </style>

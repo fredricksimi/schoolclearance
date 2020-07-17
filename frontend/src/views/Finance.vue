@@ -41,18 +41,11 @@ export default {
       alert:''
     }
   },
-  mounted () {
-    this.getFinanceItems()
-  },
   methods: {
     getFinanceItems() {
       axios({
         method: 'get',
-        url: API_URL + 'finance/',
-        auth: {
-          username: 'freddy',
-          password: 'voldermort'
-        }
+        url: API_URL + 'finance/'
       }).then(response => this.Financeitems = response.data)
     },
     checkDatabase() {

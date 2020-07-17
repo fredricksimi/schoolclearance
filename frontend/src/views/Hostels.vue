@@ -41,18 +41,11 @@ export default {
       alert:''
     }
   },
-  mounted () {
-    this.gethostelsItems()
-  },
   methods: {
     gethostelsItems() {
       axios({
         method: 'get',
-        url: API_URL + 'hostels/',
-        auth: {
-          username: 'freddy',
-          password: 'voldermort'
-        }
+        url: API_URL + 'hostels/'
       }).then(response => this.hostelsitems = response.data)
     },
     checkDatabase() {

@@ -41,18 +41,11 @@ export default {
       alert:''
     }
   },
-  mounted () {
-    this.getFinanceOfficerItems()
-  },
   methods: {
     getFinanceOfficerItems() {
       axios({
         method: 'get',
-        url: API_URL + 'financeofficer/',
-        auth: {
-          username: 'freddy',
-          password: 'voldermort'
-        }
+        url: API_URL + 'financeofficer/'
       }).then(response => this.FinanceOfficeritems = response.data)
     },
     checkDatabase() {

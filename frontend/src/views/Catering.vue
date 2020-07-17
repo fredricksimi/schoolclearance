@@ -41,18 +41,11 @@ export default {
       alert:''
     }
   },
-  mounted () {
-    this.getcateringItems()
-  },
   methods: {
     getcateringItems() {
       axios({
         method: 'get',
-        url: API_URL + 'catering/',
-        auth: {
-          username: 'freddy',
-          password: 'voldermort'
-        }
+        url: API_URL + 'catering/'
       }).then(response => this.cateringitems = response.data)
     },
     checkDatabase() {

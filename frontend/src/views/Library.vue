@@ -41,18 +41,11 @@ export default {
       alert: ''
     }
   },
-  mounted () {
-    this.getlibraryItems()
-  },
   methods: {
     getlibraryItems() {
       axios({
         method: 'get',
-        url: API_URL + 'library/',
-        auth: {
-          username: 'freddy',
-          password: 'voldermort'
-        }
+        url: API_URL + 'library/'
       }).then(response => this.libraryitems = response.data)
     },
     checkDatabase() {

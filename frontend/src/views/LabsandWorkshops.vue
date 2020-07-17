@@ -41,18 +41,11 @@ export default {
       alert:''
     }
   },
-  mounted () {
-    this.getlabsItems()
-  },
   methods: {
     getlabsItems() {
       axios({
         method: 'get',
-        url: API_URL + 'labs/',
-        auth: {
-          username: 'freddy',
-          password: 'voldermort'
-        }
+        url: API_URL + 'labs/'
       }).then(response => this.labsitems = response.data)
     },
     checkDatabase() {
